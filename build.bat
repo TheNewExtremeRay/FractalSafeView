@@ -51,7 +51,7 @@ if errorlevel 1 (
 
 echo.
 echo Compiling NSIS installer...
-call makensis installer.nsi
+call makensis nsis\installer.nsi
 if errorlevel 1 (
   echo.
   echo INSTALLER COMPILE FAILED.
@@ -61,7 +61,7 @@ if errorlevel 1 (
 echo.
 echo BUILD COMPLETE. Output:
 echo   Unpacked app: dist\win-unpacked\SafeView.exe
-echo   Installer:     dist\SafeView-1.0.0-Setup.exe
+echo   Installer:     nsis\SafeView-1.0.0-Setup.exe
 
 :done
 endlocal

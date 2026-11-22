@@ -74,7 +74,7 @@ npm run dist         # installers (nsis/dmg/AppImage)
 On Windows, run `build.bat` (double-click or from a terminal) to install dependencies, build the unpacked app, and compile the NSIS installer in one step. Outputs:
 
 - Unpacked app: `dist/win-unpacked/SafeView.exe`
-- Installer: `dist/SafeView-1.0.0-Setup.exe`
+- Installer: `nsis/SafeView-1.0.0-Setup.exe`
 
 ## Guest image (full-VM isolation)
 

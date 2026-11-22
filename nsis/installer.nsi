@@ -1,6 +1,7 @@
 ; SafeView Installer Script (v1.0.0)
+; Location: nsis/installer.nsi
 ; Build the unpacked app first: npm run dist  (or build.bat)
-; Then compile this script with makensis: makensis installer.nsi
+; Then compile: makensis nsis/installer.nsi
 
 !define APP_NAME "SafeView"
 !define APP_VERSION "1.0.0"
@@ -8,12 +9,12 @@
 !define APP_EXE "SafeView.exe"
 !define UNINSTALL_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}"
 
-Icon "${__FILEDIR__}\assets\icon.ico"
-!define MUI_ICON "${__FILEDIR__}\assets\icon.ico"
-!define MUI_UNICON "${__FILEDIR__}\assets\icon.ico"
+Icon "${__FILEDIR__}\..\assets\icon.ico"
+!define MUI_ICON "${__FILEDIR__}\..\assets\icon.ico"
+!define MUI_UNICON "${__FILEDIR__}\..\assets\icon.ico"
 
 Name "${APP_NAME} v${APP_VERSION}"
-OutFile "${__FILEDIR__}\dist\${APP_NAME}-${APP_VERSION}-Setup.exe"
+OutFile "${__FILEDIR__}\${APP_NAME}-${APP_VERSION}-Setup.exe"
 InstallDir "$PROGRAMFILES64\${APP_NAME}"
 InstallDirRegKey HKCU "Software\${APP_NAME}" "Install_Dir"
 
@@ -25,20 +26,18 @@ InstallDirRegKey HKCU "Software\${APP_NAME}" "Install_Dir"
 Section "Install"
   SetOutPath "$INSTDIR"
 
-  ; Copy the entire unpacked Electron app.
-  File /r "${__FILEDIR__}\dist\win-unpacked\*.*"
+  ; Copy the entire unpacked Electron app (built by electron-builder).
+  File /r "${__FILEDIR__}\..\dist\win-unpacked\*.*"
 
   ; Versioned shortcut icon avoids stale Windows icon-cache entries.
-  File /oname=${APP_NAME}-${APP_VERSION}.ico "${__FILEDIR__}\assets\icon.ico"
+  File /oname=${APP_NAME}-${APP_VERSION}.ico "${__FILEDIR__}\..\assets\icon.ico"
 
-  ; Create shortcuts.
   SetOutPath "$INSTDIR"
   CreateDirectory "$SMPROGRAMS\${APP_NAME}"
   CreateShortcut "$SMPROGRAMS\${APP_NAME}\${APP_NAME}.lnk" "$INSTDIR\${APP_EXE}" "" "$INSTDIR\${APP_NAME}-${APP_VERSION}.ico" 0
   CreateShortcut "$DESKTOP\${APP_NAME}.lnk" "$INSTDIR\${APP_EXE}" "" "$INSTDIR\${APP_NAME}-${APP_VERSION}.ico" 0
   System::Call 'shell32::SHChangeNotify(i 0x08000000, i 0, i 0, i 0)'
 
-  ; Write registry.
   WriteRegStr HKCU "Software\${APP_NAME}" "Install_Dir" "$INSTDIR"
   WriteRegStr HKLM "${UNINSTALL_KEY}" "DisplayName" "${APP_NAME} v${APP_VERSION}"
   WriteRegStr HKLM "${UNINSTALL_KEY}" "DisplayIcon" "$INSTDIR\${APP_EXE},0"
@@ -48,7 +47,6 @@ Section "Install"
   WriteUninstaller "$INSTDIR\uninstall.exe"
 SectionEnd
 
-; Uninstaller
 Section "Uninstall"
   DeleteRegKey HKLM "${UNINSTALL_KEY}"
   DeleteRegKey HKCU "Software\${APP_NAME}"
