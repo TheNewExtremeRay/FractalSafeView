@@ -71,10 +71,7 @@ npm run pack         # unpacked directory
 npm run dist         # installers (nsis/dmg/AppImage)
 ```
 
-On Windows, run `build.bat` (double-click or from a terminal) to install dependencies, build the unpacked app, and compile the NSIS installer in one step. Outputs:
-
-- Unpacked app: `dist/win-unpacked/SafeView.exe`
-- Installer: `nsis/SafeView-1.0.0-Setup.exe`
+On Windows, run `build.bat` (double-click or from a terminal) to install dependencies and build the Squirrel installer in one step. Output is in `dist/`.
 
 ## Guest image (full-VM isolation)
 
