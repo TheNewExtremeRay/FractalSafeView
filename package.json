@@ -1,0 +1,62 @@
+{
+  "name": "fractal-safeview",
+  "productName": "SafeView",
+  "version": "0.1.0",
+  "description": "Fractal SafeView: play potentially untrusted .mp4 files inside an isolated Linux micro-VM.",
+  "main": "src/main/index.js",
+  "author": "Fractal",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build:guest": "bash guest/build-image.sh",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.fractal.safeview",
+    "productName": "SafeView",
+    "artifactName": "FractalSafeView-${version}-${os}-${arch}.${ext}",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "guest/**/*",
+      "assets/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon.icns"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "assets/icon.png",
+      "category": "AudioVideo"
+    },
+    "nsis": {
+      "shortcutName": "SafeView",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "oneClick": false
+    },
+    "fileAssociations": [
+      {
+        "ext": "mp4",
+        "name": "MP4 Video (SafeView)",
+        "description": "Play in SafeView sandbox",
+        "role": "Viewer",
+        "icon": "assets/icon.ico"
+      }
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  }
+}

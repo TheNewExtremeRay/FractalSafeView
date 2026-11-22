@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SafeView</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="modeBadge" class="mode-badge">…</div>
+    <div id="osd" class="osd hidden"></div>
+    <div id="stage">
+      <video id="video" playsinline></video>
+      <div id="overlay" class="overlay hidden">
+        <div id="dropHint">Drop an .mp4 here or click to open</div>
+      </div>
+      <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <div id="loadingText">Booting sandbox…</div>
+      </div>
+      <div id="error" class="error hidden">
+        <div id="errorText"></div>
+        <button id="errorRetry" class="btn">Open another file</button>
+      </div>
+    </div>
+    <div id="controls" class="controls">
+      <button id="playBtn" class="btn icon" title="Play/Pause (Space)">▶</button>
+      <div id="seekWrap" class="seek-wrap">
+        <input id="seek" type="range" min="0" max="1000" value="0" step="1" />
+        <div id="time" class="time">00:00 / 00:00</div>
+      </div>
+      <button id="replayBtn" class="btn" title="Replay">↺</button>
+      <select id="speed" title="Playback speed">
+        <option value="0.5">0.5x</option>
+        <option value="1" selected>1x</option>
+        <option value="1.25">1.25x</option>
+        <option value="1.5">1.5x</option>
+        <option value="2">2x</option>
+      </select>
+      <button id="muteBtn" class="btn icon" title="Mute">🔊</button>
+      <input id="volume" type="range" min="0" max="1" step="0.01" value="1" />
+      <button id="fsBtn" class="btn icon" title="Fullscreen">⛶</button>
+    </div>
+  </div>
+  <script src="player.js"></script>
+</body>
+</html>
