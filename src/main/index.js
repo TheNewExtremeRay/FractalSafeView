@@ -61,7 +61,7 @@ function createWindow(filePath) {
               type: 'info',
               title: 'About Fractal SafeView',
               message: 'SafeView',
-              detail: 'Fractal SafeView 0.1.0\nPlays untrusted .mp4 files inside an isolated Linux micro-VM.\nInternal build name: Fractal SafeView.',
+              detail: 'SafeView 1.0.0\nPlays untrusted .mp4 files inside an isolated Linux micro-VM.\nInternal build name: Fractal SafeView.',
             });
           },
         },

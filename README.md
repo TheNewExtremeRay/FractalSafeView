@@ -71,9 +71,10 @@ npm run pack         # unpacked directory
 npm run dist         # installers (nsis/dmg/AppImage)
 ```
 
-Artifacts are written to `dist/` and named `FractalSafeView-<version>-<os>-<arch>.<ext>`.
+On Windows, run `build.bat` (double-click or from a terminal) to install dependencies, build the unpacked app, and compile the NSIS installer in one step. Outputs:
 
-On Windows you can also run `build.bat` (double-click or from a terminal) to install dependencies and build the exe + NSIS installer in one step.
+- Unpacked app: `dist/win-unpacked/SafeView.exe`
+- Installer: `dist/SafeView-1.0.0-Setup.exe`
 
 ## Guest image (full-VM isolation)
 
