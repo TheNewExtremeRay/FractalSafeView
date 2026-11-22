@@ -71,7 +71,9 @@ npm run pack         # unpacked directory
 npm run dist         # installers (nsis/dmg/AppImage)
 ```
 
-On Windows, run `build.bat` (double-click or from a terminal) to install dependencies and build the Squirrel installer in one step. Output is in `dist/`.
+On Windows, run `build.bat` (double-click or from a terminal) to install dependencies and build the Squirrel installer in one step. The installer is written to `dist/squirrel-windows/` (e.g. `FractalSafeView-1.0.0-win-x64.exe`).
+
+Note: electron-builder extracts a code-signing toolchain on first build. On Windows this requires Developer Mode (Settings -> Privacy & security -> For developers -> Developer Mode) to be enabled, otherwise the extraction fails on symlink creation. If the build fails with "Cannot create symbolic link", enable Developer Mode and re-run.
 
 ## Guest image (full-VM isolation)
 
